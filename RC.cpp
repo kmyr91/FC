@@ -16,7 +16,7 @@ typedef complex<double> CD;
 #define NTrain 5000
 #define NTest 2500
 #define NThetas 200
-#define Nsamples 4 //always is 1
+#define Nsamples 4 
 #define Ninputs 2
 #define MaxDelayPerLayer 500
 int NElements=Discard+NTrain+NTest;
