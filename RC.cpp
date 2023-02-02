@@ -100,28 +100,7 @@ void Euler(double a[],double ay[], double h, double t,double V[]){
         delayIndex[j] = (DI + 1) % delayNum[j];
     }
 }
-void rungeKutta(double a[],double ay[], double h, double t,double V[]){
-double x[Nsamples], b[4][Nsamples],y[Nsamples], by[4][Nsamples];
-for(int i = 0; i < 4; i++){
-    for(int j = 0; j < Nsamples; j++){
-        if(i == 0){ x[j] = a[j];y[j] = ay[j];}
-        if(i == 1){ x[j] = a[j] + h * b[0][j] / 2.0;y[j] = ay[j] + h * by[0][j] / 2.0;}
-        if(i == 2){ x[j] = a[j] + h * b[1][j] / 2.0;y[j] = ay[j] + h * by[1][j] / 2.0;}
-        if(i == 3){ x[j] = a[j] + h * b[2][j];y[j] = ay[j] + h * by[2][j];}
-    }
-    Ikeda(x,y, b[i],by[i],V);
-}
 
-for(int i = 0; i < Nsamples; i++){
-   a[i] += h * (b[0][i] + 2.0 * b[1][i]+ 2.0 * b[2][i] + b[3][i]) / 6.0;
-   ay[i] += h * (by[0][i] + 2.0 * by[1][i]+ 2.0 * by[2][i] + by[3][i]) / 6.0;
-}
-for(int j=0;j<NDelay;j++){
-        int DI=delayIndex[j];
-        delayIndex[j] = (DI + 1) % delayNum[j];
-    }
-    
-}
 int main(){
     ofstream outputz1("Data/Samples/sample1T4.txt");
     ofstream outputz2("Data/Samples/sample2T4.txt");
